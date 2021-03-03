@@ -25,7 +25,7 @@ public class ejecutora {
             */
     
     listas.registar();
-        
+    listas.leer();
         
     }
     
