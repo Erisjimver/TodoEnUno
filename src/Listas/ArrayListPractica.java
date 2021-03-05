@@ -61,7 +61,8 @@ public class ArrayListPractica {
     }
     
     public ArrayList leer3(){
-            System.out.println("se eecuta esto");
+        System.out.println("se ejecuta esto");
+        leer();
         Iterator<Datos> itrPartidos = lista.iterator();
         while(itrPartidos.hasNext()){
 	Datos partido = itrPartidos.next();

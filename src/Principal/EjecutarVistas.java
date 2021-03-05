@@ -21,7 +21,7 @@ public class EjecutarVistas extends javax.swing.JFrame {
 //metodos//
     
     private void registrar(){
-        ArrayListPractica lista= new ArrayListPractica();
+       // ArrayListPractica listas= new ArrayListPractica();
         codigo= tcodigo.getText();
         nombre = tnombre.getText();
         precio_compra = tpreciocompra.getText();
@@ -31,18 +31,28 @@ public class EjecutarVistas extends javax.swing.JFrame {
         
         try{
             
-            lista.registarVista(codigo, nombre, precio_compra, precio_venta, stock, cantidad_vendida);
+            listas.registarVista(codigo, nombre, precio_compra, precio_venta, stock, cantidad_vendida);
         }catch(Exception e){
             System.out.println("Error en el formulario: "+e);
         }
-        lista.leer();
+        listas.leer();
     }
     
     private void consultar(){
         ArrayListPractica lista2= new ArrayListPractica();
-        //lista.leer3();
-        Iterator<Datos> itrPartidos = lista2.leer3().iterator();
+        ArrayList<String> prueba = new ArrayList<String>();
+        prueba = lista2.leer3();
+        /*    for (int i = 0; i < prueba.size(); i++) {
+                System.out.println(prueba.iterator());
+                Iterator<String> itr = prueba.iterator();
+                
+            }
+       */
+//dato.getCodigo_producto();
+       // System.out.println(dato.getCodigo_producto());
+        Iterator<Datos> itrPartidos = listas.leer3().iterator();
         System.out.println("k paso aqui");
+        
         if(!itrPartidos.hasNext()){
             Datos partido = itrPartidos.next();
             System.out.println("vacio"+partido.getCodigo_producto());
@@ -58,6 +68,7 @@ public class EjecutarVistas extends javax.swing.JFrame {
                         + partido.getCantidad_vendida());
         TextNombreProducto.setText(partido.getCodigo_producto());
         } 
+        
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -90,8 +101,12 @@ public class EjecutarVistas extends javax.swing.JFrame {
         prueba = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(679, 500));
+
+        TabbedPane.setPreferredSize(new java.awt.Dimension(679, 500));
 
         PanelListas.setBackground(new java.awt.Color(255, 255, 255));
+        PanelListas.setPreferredSize(new java.awt.Dimension(674, 490));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Registrar Productos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION));
@@ -142,7 +157,7 @@ public class EjecutarVistas extends javax.swing.JFrame {
                             .addComponent(tprecioventa, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tstock, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tcantidadvendida, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,7 +188,7 @@ public class EjecutarVistas extends javax.swing.JFrame {
                     .addComponent(tcantidadvendida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout PanelListasLayout = new javax.swing.GroupLayout(PanelListas);
@@ -181,21 +196,22 @@ public class EjecutarVistas extends javax.swing.JFrame {
         PanelListasLayout.setHorizontalGroup(
             PanelListasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelListasLayout.createSequentialGroup()
-                .addGap(166, 166, 166)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(165, 165, 165))
+                .addGap(161, 161, 161)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(132, Short.MAX_VALUE))
         );
         PanelListasLayout.setVerticalGroup(
             PanelListasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelListasLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addGap(28, 28, 28)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         TabbedPane.addTab("Producto", PanelListas);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setPreferredSize(new java.awt.Dimension(674, 480));
 
         LabelCodigo.setText("Codigo:");
 
@@ -239,7 +255,7 @@ public class EjecutarVistas extends javax.swing.JFrame {
                         .addComponent(TextNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35)
                         .addComponent(ButtonBuscar)))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(prueba, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -255,7 +271,7 @@ public class EjecutarVistas extends javax.swing.JFrame {
                     .addComponent(TextCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TextNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ButtonBuscar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(prueba, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -268,11 +284,11 @@ public class EjecutarVistas extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(TabbedPane)
+            .addComponent(TabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 639, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(TabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 459, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(TabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE)
         );
 
         pack();
