@@ -5,8 +5,8 @@ import java.util.Iterator;
 
 public class ArrayListPractica {
     
-    ArrayList<Datos> lista = new ArrayList<>();
-   
+   ArrayList<Datos> lista = new ArrayList<>();
+   String [] enviarTabla ={};
     public void registar(){
         try{
             
@@ -47,7 +47,7 @@ public class ArrayListPractica {
         }
     }   
     public void leer(){
-        System.out.println("n... Resultados de los partidos de Futbol ...");
+        System.out.println("... Resultados de los productos insertados ...");
         Iterator<Datos> itrPartidos = lista.iterator();
         while(itrPartidos.hasNext()){
 	Datos partido = itrPartidos.next();
@@ -56,9 +56,23 @@ public class ArrayListPractica {
 			+ partido.getPrecio_compra() + " "
 			+ partido.getPrecio_venta() + " "
                         + partido.getStock() + " "
-                        + partido.getCantidad_vendida());
+                        + partido.getCantidad_vendida()); 
+        }   
+    }
     
-        }
-    
-}
+    public ArrayList leer3(){
+            System.out.println("se eecuta esto");
+        Iterator<Datos> itrPartidos = lista.iterator();
+        while(itrPartidos.hasNext()){
+	Datos partido = itrPartidos.next();
+	System.out.println(partido.getCodigo_producto() + " "
+			+ partido.getNombre_producto() + " "
+			+ partido.getPrecio_compra() + " "
+			+ partido.getPrecio_venta() + " "
+                        + partido.getStock() + " "
+                        + partido.getCantidad_vendida());  
+        } 
+        return lista;
+  
+    }
 }

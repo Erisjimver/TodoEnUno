@@ -1,12 +1,18 @@
 package Principal;
 
 import Listas.ArrayListPractica;
+import Listas.Datos;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 
 public class EjecutarVistas extends javax.swing.JFrame {
     //variables
     private String codigo, nombre,precio_compra,precio_venta,stock,cantidad_vendida;
-
+    
+    ArrayListPractica listas= new ArrayListPractica();
+    ArrayList<Datos> lista = new ArrayList<>();
+    
     public EjecutarVistas() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -30,6 +36,28 @@ public class EjecutarVistas extends javax.swing.JFrame {
             System.out.println("Error en el formulario: "+e);
         }
         lista.leer();
+    }
+    
+    private void consultar(){
+        ArrayListPractica lista2= new ArrayListPractica();
+        //lista.leer3();
+        Iterator<Datos> itrPartidos = lista2.leer3().iterator();
+        System.out.println("k paso aqui");
+        if(!itrPartidos.hasNext()){
+            Datos partido = itrPartidos.next();
+            System.out.println("vacio"+partido.getCodigo_producto());
+        }
+        while(itrPartidos.hasNext()){
+        System.out.println("entro a wile");
+	Datos partido = itrPartidos.next();
+	System.out.println(partido.getCodigo_producto() + " "
+			+ partido.getNombre_producto() + " "
+			+ partido.getPrecio_compra() + " "
+			+ partido.getPrecio_venta() + " "
+                        + partido.getStock() + " "
+                        + partido.getCantidad_vendida());
+        TextNombreProducto.setText(partido.getCodigo_producto());
+        } 
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -59,6 +87,7 @@ public class EjecutarVistas extends javax.swing.JFrame {
         ButtonBuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabla = new javax.swing.JTable();
+        prueba = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -173,6 +202,11 @@ public class EjecutarVistas extends javax.swing.JFrame {
         jLabel8.setText("Nombre Producto:");
 
         ButtonBuscar.setText("Buscar");
+        ButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonBuscarActionPerformed(evt);
+            }
+        });
 
         Tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -206,6 +240,10 @@ public class EjecutarVistas extends javax.swing.JFrame {
                         .addGap(35, 35, 35)
                         .addComponent(ButtonBuscar)))
                 .addContainerGap(50, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(prueba, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(61, 61, 61))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,7 +255,9 @@ public class EjecutarVistas extends javax.swing.JFrame {
                     .addComponent(TextCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TextNombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ButtonBuscar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(prueba, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
         );
@@ -243,6 +283,11 @@ public class EjecutarVistas extends javax.swing.JFrame {
         registrar();
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void ButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonBuscarActionPerformed
+        // TODO add your handling code here:
+        consultar();
+    }//GEN-LAST:event_ButtonBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -284,7 +329,7 @@ public class EjecutarVistas extends javax.swing.JFrame {
     private javax.swing.JLabel LabelCodigo;
     private javax.swing.JPanel PanelListas;
     private javax.swing.JTabbedPane TabbedPane;
-    private javax.swing.JTable Tabla;
+    public static javax.swing.JTable Tabla;
     private javax.swing.JTextField TextCodigo;
     private javax.swing.JTextField TextNombreProducto;
     private javax.swing.JButton jButton1;
@@ -298,6 +343,7 @@ public class EjecutarVistas extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel prueba;
     private javax.swing.JTextField tcantidadvendida;
     private javax.swing.JTextField tcodigo;
     private javax.swing.JTextField tnombre;

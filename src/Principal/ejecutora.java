@@ -1,7 +1,9 @@
 package Principal;
 
 import Listas.ArrayListPractica;
+import Listas.Datos;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 public class ejecutora {
@@ -23,10 +25,27 @@ public class ejecutora {
       System.out.println(lista.get(i));
     }
             */
-    
+    ArrayList<Datos> lista = new ArrayList<>();
     listas.registar();
     listas.leer();
-        
+    lista = listas.leer3();
+    
+
+
+        Iterator<Datos> itrPartidos = lista.iterator();
+        while(itrPartidos.hasNext()){
+	Datos partido = itrPartidos.next();
+	System.out.println(partido.getCodigo_producto() + " "
+			+ partido.getNombre_producto() + " "
+			+ partido.getPrecio_compra() + " "
+			+ partido.getPrecio_venta() + " "
+                        + partido.getStock() + " "
+                        + partido.getCantidad_vendida());  
+        } 
     }
     
+    
 }
+    
+    
+
