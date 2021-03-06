@@ -4,6 +4,7 @@ import Listas.ArrayListPractica;
 import Listas.Datos;
 import java.util.ArrayList;
 import java.util.Iterator;
+import javax.swing.table.DefaultTableModel;
 
 
 public class EjecutarVistas extends javax.swing.JFrame {
@@ -12,10 +13,13 @@ public class EjecutarVistas extends javax.swing.JFrame {
     
     ArrayListPractica listas= new ArrayListPractica();
     ArrayList<Datos> lista = new ArrayList<>();
-    
+    DefaultTableModel modelo = new DefaultTableModel();
+    int cantidadColumnas;
     public EjecutarVistas() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.Tabla.setModel(modelo);
+        encabezadoManual();
     }
 
 //metodos//
@@ -38,35 +42,39 @@ public class EjecutarVistas extends javax.swing.JFrame {
         listas.leer();
     }
     
+    private void encabezadoManual(){
+        modelo.addColumn("Codigo");
+        modelo.addColumn("Nombre Producto");
+        modelo.addColumn("Precio compra");
+        modelo.addColumn("Precio Venta");
+        modelo.addColumn("Stock");
+        modelo.addColumn("Cantidad vendida");      
+    }
     private void consultar(){
         ArrayListPractica lista2= new ArrayListPractica();
         ArrayList<String> prueba = new ArrayList<String>();
         prueba = lista2.leer3();
-        /*    for (int i = 0; i < prueba.size(); i++) {
-                System.out.println(prueba.iterator());
-                Iterator<String> itr = prueba.iterator();
-                
-            }
-       */
-//dato.getCodigo_producto();
-       // System.out.println(dato.getCodigo_producto());
+
         Iterator<Datos> itrPartidos = listas.leer3().iterator();
         System.out.println("k paso aqui");
-        
+        /*
         if(!itrPartidos.hasNext()){
             Datos partido = itrPartidos.next();
             System.out.println("vacio"+partido.getCodigo_producto());
         }
+        */
         while(itrPartidos.hasNext()){
         System.out.println("entro a wile");
-	Datos partido = itrPartidos.next();
-	System.out.println(partido.getCodigo_producto() + " "
-			+ partido.getNombre_producto() + " "
-			+ partido.getPrecio_compra() + " "
-			+ partido.getPrecio_venta() + " "
-                        + partido.getStock() + " "
-                        + partido.getCantidad_vendida());
-        TextNombreProducto.setText(partido.getCodigo_producto());
+	Datos partido = itrPartidos.next();      
+        
+        //////////////////tabla llenando ////////
+            modelo.addRow(new Object[]{ partido.getCodigo_producto(),
+                                        partido.getNombre_producto(),
+                                        partido.getPrecio_compra(),
+                                        partido.getPrecio_venta(),
+                                        partido.getStock(),
+                                        partido.getCantidad_vendida()});
+            Tabla.setModel(modelo);
         } 
         
     }
